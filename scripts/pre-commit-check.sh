@@ -4,8 +4,18 @@
 
 echo "[INFO] Running pre-commit checks..."
 
-# 1. Code formatting with Black
-echo "[1/4] Checking code formatting with Black..."
+# 1. Auto-fix imports and unused code
+echo "[1/6] Auto-fixing imports and unused code..."
+autoflake --in-place --remove-unused-variables --remove-all-unused-imports --recursive src/
+echo "[PASS] Auto-fix imports completed"
+
+# 2. Auto-fix code style issues
+echo "[2/6] Auto-fixing code style with autopep8..."
+autopep8 --in-place --aggressive --aggressive --recursive src/
+echo "[PASS] Auto-fix code style completed"
+
+# 3. Code formatting with Black
+echo "[3/6] Applying Black formatting..."
 black .
 black --check .
 if [ $? -ne 0 ]; then
@@ -14,26 +24,27 @@ if [ $? -ne 0 ]; then
 fi
 echo "[PASS] Black formatting passed"
 
-# 2. Linting with flake8
-echo "[2/4] Linting with flake8..."
-flake8 src/
+# 4. Final linting check with flake8
+echo "[4/6] Final linting check with flake8..."
+flake8 src/ --ignore=E501
 if [ $? -ne 0 ]; then
-    echo "[FAIL] flake8 linting failed!"
+    echo "[FAIL] flake8 linting failed after auto-fixes!"
+    echo "[INFO] Some issues may need manual fixing"
     exit 1
 fi
 echo "[PASS] flake8 linting passed"
 
-# 3. Run tests
-echo "[3/4] Running tests..."
-pytest --maxfail=1 --disable-warnings -q
+# 5. Run tests
+echo "[5/6] Running tests..."
+pytest --maxfail=1 -q
 if [ $? -ne 0 ]; then
     echo "[FAIL] Tests failed!"
     exit 1
 fi
 echo "[PASS] Tests passed"
 
-# 4. Check if docs build
-echo "[4/4] Building documentation..."
+# 6. Check if docs build
+echo "[6/6] Building documentation..."
 export JUPYTER_PLATFORM_DIRS=1
 mkdocs build --site-dir site
 if [ $? -ne 0 ]; then

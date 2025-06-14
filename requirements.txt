@@ -10,8 +10,10 @@ mkdocs
 mkdocs-material
 mkdocs-jupyter
 pytest
-black
+black[jupyter]
 flake8
+autoflake
+autopep8
 numpy
 pandas
 networkx 

@@ -27,6 +27,8 @@ dev = [
     "pytest-cov",
     "black",
     "flake8",
+    "autoflake",
+    "autopep8",
     "mkdocs",
     "mkdocs-material",
 ]
