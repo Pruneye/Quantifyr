@@ -1,5 +1,8 @@
 # Quantifyr
 
+[![CI](https://github.com/Pruneye/Quantifyr/workflows/CI/badge.svg)](https://github.com/Pruneye/Quantifyr/actions)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://Pruneye.github.io/Quantifyr/)
+
 Quantifyr is a hybrid classical–quantum molecular autoencoder and property‑prediction platform.
 It provides:
 
@@ -8,6 +11,10 @@ It provides:
 - **Hybrid GNN→Quantum** pipelines
 - Extensive **2D/3D/interactive visualizations** (Matplotlib/Plotly/Dash)
 - Automated **CI (lint, tests)** and **Docs** via MkDocs + GitHub Pages
+
+## 📚 Documentation
+
+View the full documentation at: **[https://Pruneye.github.io/Quantifyr/](https://Pruneye.github.io/Quantifyr/)**
 
 ## Getting Started
 

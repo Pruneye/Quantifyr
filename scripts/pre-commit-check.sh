@@ -6,6 +6,7 @@ echo "[INFO] Running pre-commit checks..."
 
 # 1. Code formatting with Black
 echo "[1/4] Checking code formatting with Black..."
+black .
 black --check .
 if [ $? -ne 0 ]; then
     echo "[FAIL] Black formatting failed! Run 'black .' to fix."
@@ -33,6 +34,7 @@ echo "[PASS] Tests passed"
 
 # 4. Check if docs build
 echo "[4/4] Building documentation..."
+export JUPYTER_PLATFORM_DIRS=1
 mkdocs build --site-dir site
 if [ $? -ne 0 ]; then
     echo "[FAIL] Documentation build failed!"

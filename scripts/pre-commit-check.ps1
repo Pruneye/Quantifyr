@@ -6,6 +6,7 @@ Write-Host "[INFO] Running pre-commit checks..." -ForegroundColor Cyan
 
 # 1. Code formatting with Black
 Write-Host "`n[1/4] Checking code formatting with Black..." -ForegroundColor Yellow
+black .
 black --check .
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[FAIL] Black formatting failed! Run 'black .' to fix." -ForegroundColor Red
@@ -33,6 +34,7 @@ Write-Host "[PASS] Tests passed" -ForegroundColor Green
 
 # 4. Check if docs build
 Write-Host "`n[4/4] Building documentation..." -ForegroundColor Yellow
+$env:JUPYTER_PLATFORM_DIRS = "1"
 mkdocs build --site-dir site
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[FAIL] Documentation build failed!" -ForegroundColor Red
