@@ -1,0 +1,586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A hybrid classical-quantum molecular machine learning platform">
+      
+      
+      
+        <link rel="canonical" href="https://Pruneye.github.io/Quantifyr/tutorials/api-reference/">
+      
+      
+        <link rel="prev" href="../visualization/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>API Reference - Quantifyr</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Quantifyr" class="md-header__button md-logo" aria-label="Quantifyr" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Quantifyr
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Pruneye/Quantifyr" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Pruneye/Quantifyr
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<h2 id="data_utils-module">data_utils Module<a class="headerlink" href="#data_utils-module" title="Permanent link">&para;</a></h2>
+<h3 id="molecular-parsing">Molecular Parsing<a class="headerlink" href="#molecular-parsing" title="Permanent link">&para;</a></h3>
+<h4 id="parse_smilessmiles-str-config-optionalmoleculeconfig-none-mol"><code>parse_smiles(smiles: str, config: Optional[MoleculeConfig] = None) -&gt; Mol</code><a class="headerlink" href="#parse_smilessmiles-str-config-optionalmoleculeconfig-none-mol" title="Permanent link">&para;</a></h4>
+<p>Parse SMILES string into RDKit molecule object with comprehensive error handling.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>smiles</code> (str): SMILES string representation</li>
+<li><code>config</code> (MoleculeConfig, optional): Configuration for processing settings</li>
+</ul>
+<p><strong>Returns:</strong> RDKit Mol object</p>
+<p><strong>Raises:</strong> ValueError if SMILES string is invalid</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span><span class="p">,</span> <span class="n">MoleculeConfig</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Basic parsing</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CCO&quot;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Custom configuration</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">config</span> <span class="o">=</span> <span class="n">MoleculeConfig</span><span class="p">(</span><span class="n">add_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_atoms</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="moleculeconfig"><code>MoleculeConfig</code><a class="headerlink" href="#moleculeconfig" title="Permanent link">&para;</a></h4>
+<p>Configuration class for molecular processing options.</p>
+<p><strong>Attributes:</strong></p>
+<ul>
+<li><code>add_hydrogens</code> (bool): Whether to add explicit hydrogens (default: False)</li>
+<li><code>sanitize</code> (bool): Whether to sanitize molecules (default: True)</li>
+<li><code>max_atoms</code> (int): Maximum number of atoms allowed (default: 200)</li>
+</ul>
+<h3 id="feature-extraction">Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permanent link">&para;</a></h3>
+<h4 id="extract_atom_featuresmol-mol-listlistfloat"><code>extract_atom_features(mol: Mol) -&gt; List[List[float]]</code><a class="headerlink" href="#extract_atom_featuresmol-mol-listlistfloat" title="Permanent link">&para;</a></h4>
+<p>Extract atomic features for each atom in the molecule.</p>
+<p><strong>Features extracted:</strong></p>
+<ul>
+<li>Atomic number</li>
+<li>Degree (number of bonds)</li>
+<li>Formal charge</li>
+<li>Hybridization type (SP, SP2, SP3, etc.)</li>
+<li>Aromaticity (boolean)</li>
+<li>Number of implicit hydrogens</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+</ul>
+<p><strong>Returns:</strong> List of feature vectors, one per atom</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CCO&quot;</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">atom_features</span> <span class="o">=</span> <span class="n">extract_atom_features</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Atom features shape: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_features</span><span class="p">)</span><span class="si">}</span><span class="s2"> atoms x </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_features</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2"> features&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="extract_bond_featuresmol-mol-listlistfloat"><code>extract_bond_features(mol: Mol) -&gt; List[List[float]]</code><a class="headerlink" href="#extract_bond_featuresmol-mol-listlistfloat" title="Permanent link">&para;</a></h4>
+<p>Extract bond features for each bond in the molecule.</p>
+<p><strong>Features extracted:</strong></p>
+<ul>
+<li>Bond type (single=1, double=2, triple=3, aromatic=1.5)</li>
+<li>Conjugation status (boolean)</li>
+<li>Ring membership (boolean)</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+</ul>
+<p><strong>Returns:</strong> List of feature vectors, one per bond</p>
+<h3 id="graph-construction">Graph Construction<a class="headerlink" href="#graph-construction" title="Permanent link">&para;</a></h3>
+<h4 id="mol_to_graphmol-mol-include_features-bool-true-data"><code>mol_to_graph(mol: Mol, include_features: bool = True) -&gt; Data</code><a class="headerlink" href="#mol_to_graphmol-mol-include_features-bool-true-data" title="Permanent link">&para;</a></h4>
+<p>Convert RDKit molecule to PyTorch Geometric graph representation.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+<li><code>include_features</code> (bool): Whether to include node/edge features (default: True)</li>
+</ul>
+<p><strong>Returns:</strong> PyTorch Geometric Data object with:</p>
+<ul>
+<li><code>x</code>: Node features (if include_features=True)</li>
+<li><code>edge_index</code>: Edge connectivity in COO format</li>
+<li><code>edge_attr</code>: Edge features (if include_features=True)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CCO&quot;</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">graph</span> <span class="o">=</span> <span class="n">mol_to_graph</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nodes: </span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">num_nodes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edges: </span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">num_edges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node features: </span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edge features: </span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_attr</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="property-calculation">Property Calculation<a class="headerlink" href="#property-calculation" title="Permanent link">&para;</a></h3>
+<h4 id="compute_molecular_descriptorsmol-mol-dictstr-float"><code>compute_molecular_descriptors(mol: Mol) -&gt; Dict[str, float]</code><a class="headerlink" href="#compute_molecular_descriptorsmol-mol-dictstr-float" title="Permanent link">&para;</a></h4>
+<p>Calculate comprehensive molecular properties and descriptors.</p>
+<p><strong>Properties calculated:</strong></p>
+<ul>
+<li><strong>MW</strong>: Molecular weight (Da)</li>
+<li><strong>LogP</strong>: Partition coefficient (lipophilicity)</li>
+<li><strong>TPSA</strong>: Topological polar surface area (Ų)</li>
+<li><strong>NumRotatableBonds</strong>: Number of rotatable bonds</li>
+<li><strong>NumHBD</strong>: Hydrogen bond donors</li>
+<li><strong>NumHBA</strong>: Hydrogen bond acceptors</li>
+<li><strong>NumRings</strong>: Number of rings</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+</ul>
+<p><strong>Returns:</strong> Dictionary mapping property names to values</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>  <span class="c1"># caffeine</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">props</span> <span class="o">=</span> <span class="n">compute_molecular_descriptors</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Molecular Weight: </span><span class="si">{</span><span class="n">props</span><span class="p">[</span><span class="s1">&#39;MW&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Da&quot;</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LogP: </span><span class="si">{</span><span class="n">props</span><span class="p">[</span><span class="s1">&#39;LogP&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TPSA: </span><span class="si">{</span><span class="n">props</span><span class="p">[</span><span class="s1">&#39;TPSA&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Ų&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
+<h4 id="load_molecule_datasetsmiles_list-liststr-labels-optionallist-none-listmol"><code>load_molecule_dataset(smiles_list: List[str], labels: Optional[List] = None) -&gt; List[Mol]</code><a class="headerlink" href="#load_molecule_datasetsmiles_list-liststr-labels-optionallist-none-listmol" title="Permanent link">&para;</a></h4>
+<p>Load and validate multiple SMILES strings into molecule objects.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>smiles_list</code> (List[str]): List of SMILES strings</li>
+<li><code>labels</code> (List, optional): Optional labels/targets for molecules</li>
+</ul>
+<p><strong>Returns:</strong> List of RDKit Mol objects (None for invalid SMILES)</p>
+<h4 id="create_molecular_dataframesmiles_list-liststr-pddataframe"><code>create_molecular_dataframe(smiles_list: List[str]) -&gt; pd.DataFrame</code><a class="headerlink" href="#create_molecular_dataframesmiles_list-liststr-pddataframe" title="Permanent link">&para;</a></h4>
+<p>Create comprehensive molecular analysis DataFrame with computed properties.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>smiles_list</code> (List[str]): List of SMILES strings</li>
+</ul>
+<p><strong>Returns:</strong> Pandas DataFrame with columns:</p>
+<ul>
+<li><code>SMILES</code>: Original SMILES string</li>
+<li><code>Valid</code>: Whether parsing succeeded</li>
+<li><code>MW</code>, <code>LogP</code>, <code>TPSA</code>, etc.: Computed molecular properties</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">smiles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;INVALID&quot;</span><span class="p">,</span> <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">]</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">df</span> <span class="o">=</span> <span class="n">create_molecular_dataframe</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Filter valid molecules</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">valid_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Valid&#39;</span><span class="p">]]</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valid molecules: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_df</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">valid_df</span><span class="p">[[</span><span class="s1">&#39;SMILES&#39;</span><span class="p">,</span> <span class="s1">&#39;MW&#39;</span><span class="p">,</span> <span class="s1">&#39;LogP&#39;</span><span class="p">,</span> <span class="s1">&#39;TPSA&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</span></code></pre></div>
+<hr />
+<h2 id="viz-module">viz Module<a class="headerlink" href="#viz-module" title="Permanent link">&para;</a></h2>
+<h3 id="2d-visualization">2D Visualization<a class="headerlink" href="#2d-visualization" title="Permanent link">&para;</a></h3>
+<h4 id="draw_molecule_2dmol-mol-width-int-300-height-int-300-kwargs-pilimage"><code>draw_molecule_2d(mol: Mol, width: int = 300, height: int = 300, **kwargs) -&gt; PIL.Image</code><a class="headerlink" href="#draw_molecule_2dmol-mol-width-int-300-height-int-300-kwargs-pilimage" title="Permanent link">&para;</a></h4>
+<p>Generate 2D molecular structure diagrams.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+<li><code>width</code> (int): Image width in pixels (default: 300)</li>
+<li><code>height</code> (int): Image height in pixels (default: 300)</li>
+<li><code>**kwargs</code>: Additional RDKit drawing options</li>
+</ul>
+<p><strong>Returns:</strong> PIL Image object</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_molecule_2d</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">img</span> <span class="o">=</span> <span class="n">draw_molecule_2d</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;caffeine_2d.png&quot;</span><span class="p">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">img</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="3d-visualization">3D Visualization<a class="headerlink" href="#3d-visualization" title="Permanent link">&para;</a></h3>
+<h4 id="create_3d_conformer_plotmol-mol-kwargs-plotlygraph_objectsfigure"><code>create_3d_conformer_plot(mol: Mol, **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#create_3d_conformer_plotmol-mol-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Create interactive 3D molecular conformer visualization.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Rotatable 3D structure</li>
+<li>Atom labels and element-based coloring</li>
+<li>Bond representations</li>
+<li>Interactive hover information</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+<li><code>**kwargs</code>: Additional plotting options</li>
+</ul>
+<p><strong>Returns:</strong> Plotly Figure object</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">create_3d_conformer_plot</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Opens in browser</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="s2">&quot;caffeine_3d.html&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="property-analysis">Property Analysis<a class="headerlink" href="#property-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="plot_molecular_propertiesdf-pddataframe-kwargs-plotlygraph_objectsfigure"><code>plot_molecular_properties(df: pd.DataFrame, **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_molecular_propertiesdf-pddataframe-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Create interactive scatter matrix of molecular properties.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Scatter plots for all property combinations</li>
+<li>Hover information showing SMILES and values</li>
+<li>Configurable markers and colors</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>df</code> (pd.DataFrame): Molecular DataFrame from <code>create_molecular_dataframe()</code></li>
+<li><code>**kwargs</code>: Additional plotting options</li>
+</ul>
+<p><strong>Returns:</strong> Plotly Figure object</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_molecular_dataframe</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_molecular_properties</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">smiles_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">]</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">create_molecular_dataframe</span><span class="p">(</span><span class="n">smiles_list</span><span class="p">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_molecular_properties</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h4 id="plot_property_distributiondf-pddataframe-properties-liststr-kwargs-plotlygraph_objectsfigure"><code>plot_property_distribution(df: pd.DataFrame, properties: List[str], **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_property_distributiondf-pddataframe-properties-liststr-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Analyze property distributions with histograms and box plots.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>df</code> (pd.DataFrame): Molecular DataFrame</li>
+<li><code>properties</code> (List[str]): List of property names to analyze</li>
+<li><code>**kwargs</code>: Additional plotting options</li>
+</ul>
+<p><strong>Returns:</strong> Multi-subplot figure with distribution plots</p>
+<h4 id="create_molecular_dashboarddf-pddataframe-plotlygraph_objectsfigure"><code>create_molecular_dashboard(df: pd.DataFrame) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#create_molecular_dashboarddf-pddataframe-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Generate comprehensive molecular analysis dashboard.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Property scatter plots</li>
+<li>Distribution histograms</li>
+<li>Statistical summaries</li>
+<li>Interactive filtering capabilities</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>df</code> (pd.DataFrame): Molecular DataFrame</li>
+</ul>
+<p><strong>Returns:</strong> Plotly Figure object with multiple subplots</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Analyze diverse molecule set</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">smiles</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;CCC&quot;</span><span class="p">,</span> <span class="s2">&quot;CCCC&quot;</span><span class="p">,</span>                    <span class="c1"># alkanes</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccc2ccccc2c1&quot;</span><span class="p">,</span>            <span class="c1"># aromatics</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">,</span>         <span class="c1"># caffeine</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="s2">&quot;CC(=O)OC1=CC=CC=C1C(=O)O&quot;</span>               <span class="c1"># aspirin</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">]</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">create_molecular_dataframe</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">dashboard</span> <span class="o">=</span> <span class="n">create_molecular_dashboard</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">dashboard</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="network-visualization">Network Visualization<a class="headerlink" href="#network-visualization" title="Permanent link">&para;</a></h3>
+<h4 id="plot_molecular_networkmol-mol-kwargs-plotlygraph_objectsfigure"><code>plot_molecular_network(mol: Mol, **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_molecular_networkmol-mol-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Visualize molecular graph structure as an interactive network.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Nodes represent atoms (colored by element)</li>
+<li>Edges represent bonds (sized by bond order)</li>
+<li>Interactive layout with hover information</li>
+<li>Force-directed positioning</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mol</code> (Mol): RDKit molecule object</li>
+<li><code>**kwargs</code>: Additional plotting options</li>
+</ul>
+<p><strong>Returns:</strong> Plotly Figure object</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_molecular_network</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<p>All functions include comprehensive error handling:</p>
+<ul>
+<li><strong>Invalid SMILES</strong>: Functions return None or raise ValueError with descriptive messages</li>
+<li><strong>Empty molecules</strong>: Gracefully handled with appropriate warnings</li>
+<li><strong>Feature extraction errors</strong>: Fallback to default values where possible</li>
+<li><strong>Visualization errors</strong>: Return empty figures with error messages</li>
+</ul>
+<h2 id="type-hints">Type Hints<a class="headerlink" href="#type-hints" title="Permanent link">&para;</a></h2>
+<p>All functions include complete type annotations for better IDE support and code clarity.</p>
+<h2 id="performance-notes">Performance Notes<a class="headerlink" href="#performance-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Batch processing</strong>: Use <code>create_molecular_dataframe()</code> for multiple molecules</li>
+<li><strong>Large molecules</strong>: Set appropriate limits in <code>MoleculeConfig</code></li>
+<li><strong>Memory usage</strong>: 3D conformer generation can be memory-intensive for large molecules</li>
+<li><strong>Visualization</strong>: Interactive plots may be slow for very large datasets</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "toc.follow", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "1.0.0"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/sidebar-sync.js"></script>
+      
+    
+  </body>
+</html>
