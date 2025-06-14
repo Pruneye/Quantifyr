@@ -1,0 +1,15 @@
+site_name: Quantifyr
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+plugins:
+  - search
+  - mkdocs-jupyter
+nav:
+  - Home: index.md
+  - Tutorials:
+    - Data Processing: tutorials/data_processing.md
+    - Classical AE: tutorials/classical_ae.md
+    - Quantum AE: tutorials/quantum_ae.md
+    - Visualization: tutorials/visualization.md 

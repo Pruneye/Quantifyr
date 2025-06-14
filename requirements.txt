@@ -1,0 +1,17 @@
+rdkit
+torch
+torch-geometric
+pennylane
+pennylane-qiskit
+matplotlib
+seaborn
+plotly
+mkdocs
+mkdocs-material
+mkdocs-jupyter
+pytest
+black
+flake8
+numpy
+pandas
+networkx 
