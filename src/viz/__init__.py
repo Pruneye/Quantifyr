@@ -1,1 +1,1 @@
-"""viz module for Quantifyr.""" 
+"""viz module for Quantifyr."""

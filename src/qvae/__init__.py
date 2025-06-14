@@ -1,1 +1,1 @@
-"""qvae module for Quantifyr.""" 
+"""qvae module for Quantifyr."""

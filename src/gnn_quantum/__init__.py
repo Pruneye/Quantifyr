@@ -1,1 +1,1 @@
-"""gnn_quantum module for Quantifyr.""" 
+"""gnn_quantum module for Quantifyr."""

@@ -12,6 +12,25 @@ It provides:
 ## Getting Started
 
 ```bash
-source .venv/bin/activate
+# Setup virtual environment
+source .venv/bin/activate  # Linux/Mac
+# OR
+.venv\Scripts\activate     # Windows
+
+# Install dependencies
 pip install -r requirements.txt
+```
+
+## Development Workflow
+
+### Before Committing
+
+Always run the pre-commit checks to ensure CI passes:
+
+```bash
+# Windows
+.\scripts\pre-commit-check.ps1
+
+# Linux/Mac
+./scripts/pre-commit-check.sh
 ```
