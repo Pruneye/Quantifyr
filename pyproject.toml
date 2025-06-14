@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantifyr"
+version = "0.1.0"
+description = "Hybrid classical-quantum molecular autoencoder and property-prediction platform"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "torch",
+    "pennylane",
+    "numpy",
+    "matplotlib",
+    "plotly",
+    "dash",
+    "rdkit-pypi",
+    "scikit-learn",
+    "pandas",
+    "jupyter",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mkdocs",
+    "mkdocs-material",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+]
+pythonpath = ["src"] 
