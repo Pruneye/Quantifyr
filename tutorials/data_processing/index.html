@@ -422,9 +422,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#atomic-features" class="md-nav__link">
+  <a href="#atomic-features-with-element-symbols" class="md-nav__link">
     <span class="md-ellipsis">
-      Atomic Features
+      Atomic Features with Element Symbols
     </span>
   </a>
   
@@ -718,7 +718,7 @@
 
 
 <h1 id="data-processing-tutorial">Data Processing Tutorial<a class="headerlink" href="#data-processing-tutorial" title="Permanent link">&para;</a></h1>
-<p>This tutorial covers molecular data processing capabilities in Quantifyr, from basic SMILES parsing to advanced batch analysis.</p>
+<p>Learn how to process molecular data in Quantifyr with comprehensive SMILES parsing, feature extraction, and batch analysis. All functions provide clear, human-readable output with element symbols, detailed molecular information, and modern theme support.</p>
 <h2 id="basic-smiles-parsing">Basic SMILES Parsing<a class="headerlink" href="#basic-smiles-parsing" title="Permanent link">&para;</a></h2>
 <h3 id="simple-parsing">Simple Parsing<a class="headerlink" href="#simple-parsing" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span>
@@ -758,24 +758,33 @@
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valid molecule&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="feature-extraction">Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permanent link">&para;</a></h2>
-<h3 id="atomic-features">Atomic Features<a class="headerlink" href="#atomic-features" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span><span class="p">,</span> <span class="n">extract_atom_features</span>
+<h3 id="atomic-features-with-element-symbols">Atomic Features with Element Symbols<a class="headerlink" href="#atomic-features-with-element-symbols" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span><span class="p">,</span> <span class="n">extract_atom_features</span><span class="p">,</span> <span class="n">get_element_symbol</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CCO&quot;</span><span class="p">)</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">atom_features</span> <span class="o">=</span> <span class="n">extract_atom_features</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of atoms: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_features</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features per atom: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_features</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First atom features: </span><span class="si">{</span><span class="n">atom_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Show first atom with element symbol</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">first_atom</span> <span class="o">=</span> <span class="n">atom_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">element</span> <span class="o">=</span> <span class="n">get_element_symbol</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">first_atom</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First atom (</span><span class="si">{</span><span class="n">element</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">first_atom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>Feature meanings:</strong></p>
+<p><strong>Feature meanings (6 features per atom):</strong></p>
+<ol>
+<li><strong>Atomic number</strong> - Element identity (C=6, N=7, O=8, etc.)</li>
+<li><strong>Degree</strong> - Number of bonded neighbors</li>
+<li><strong>Formal charge</strong> - Charge on atom  </li>
+<li><strong>Hybridization</strong> - SP/SP2/SP3 hybridization state</li>
+<li><strong>Aromaticity</strong> - Is atom in aromatic ring (1/0)</li>
+<li><strong>Hydrogen count</strong> - Number of attached hydrogens</li>
+</ol>
+<p><strong>Understanding the output:</strong></p>
 <ul>
-<li>Index 0: Atomic number</li>
-<li>Index 1: Degree (number of bonds)</li>
-<li>Index 2: Formal charge</li>
-<li>Index 3: Hybridization (1=SP, 2=SP2, 3=SP3, etc.)</li>
-<li>Index 4: Aromaticity (0 or 1)</li>
-<li>Index 5: Number of implicit hydrogens</li>
+<li>First atom (Carbon): <code>[6.0, 4.0, 0.0, 3.0, 0.0, 3.0]</code></li>
+<li>Element C, degree 4, no charge, SP3, not aromatic, 3 H atoms</li>
 </ul>
 <h3 id="bond-features">Bond Features<a class="headerlink" href="#bond-features" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_bond_features</span>
@@ -787,11 +796,15 @@
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features per bond: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bond_features</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First bond features: </span><span class="si">{</span><span class="n">bond_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>Feature meanings:</strong></p>
+<p><strong>Feature meanings (3 features per bond):</strong></p>
+<ol>
+<li><strong>Bond type</strong> - Single=1, Double=2, Triple=3, Aromatic=1.5</li>
+<li><strong>Conjugation</strong> - Is bond part of conjugated system (1/0)</li>
+<li><strong>Ring membership</strong> - Is bond in a ring (1/0)</li>
+</ol>
+<p><strong>Understanding the output:</strong></p>
 <ul>
-<li>Index 0: Bond type (1=single, 2=double, 3=triple, 1.5=aromatic)</li>
-<li>Index 1: Conjugation (0 or 1)</li>
-<li>Index 2: Ring membership (0 or 1)</li>
+<li>Benzene bond: <code>[1.5, 1.0, 1.0]</code> - Aromatic bond, conjugated, in ring</li>
 </ul>
 <h2 id="graph-construction">Graph Construction<a class="headerlink" href="#graph-construction" title="Permanent link">&para;</a></h2>
 <h3 id="basic-graph-creation">Basic Graph Creation<a class="headerlink" href="#basic-graph-creation" title="Permanent link">&para;</a></h3>
@@ -852,12 +865,16 @@
 </span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  H-Bond Acceptors: </span><span class="si">{</span><span class="n">props</span><span class="p">[</span><span class="s1">&#39;NumHBA&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="property-interpretation">Property Interpretation<a class="headerlink" href="#property-interpretation" title="Permanent link">&para;</a></h3>
+<p><strong>Drug-like descriptors for QSAR analysis:</strong></p>
 <ul>
-<li><strong>MW (Molecular Weight)</strong>: Mass in Daltons</li>
-<li><strong>LogP</strong>: Lipophilicity (higher = more lipophilic)</li>
-<li><strong>TPSA</strong>: Polar surface area (affects permeability)</li>
-<li><strong>Rotatable Bonds</strong>: Flexibility indicator</li>
-<li><strong>HBD/HBA</strong>: Hydrogen bonding capacity</li>
+<li><strong>molecular_weight</strong> - Molecular weight in Daltons (46.1 for ethanol)</li>
+<li><strong>logp</strong> - Lipophilicity/partition coefficient (-0.31 for ethanol = hydrophilic)  </li>
+<li><strong>tpsa</strong> - Topological polar surface area in Ų (affects membrane permeability)</li>
+<li><strong>num_rotatable_bonds</strong> - Flexibility measure (more = more flexible)</li>
+<li><strong>num_hbd</strong> - Hydrogen bond donors (NH, OH groups)</li>
+<li><strong>num_hba</strong> - Hydrogen bond acceptors (N, O atoms)</li>
+<li><strong>num_rings</strong> - Ring count (important for rigidity)</li>
+<li><strong>num_aromatic_rings</strong> - Aromatic ring count</li>
 </ul>
 <h2 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h2>
 <h3 id="loading-multiple-molecules">Loading Multiple Molecules<a class="headerlink" href="#loading-multiple-molecules" title="Permanent link">&para;</a></h3>

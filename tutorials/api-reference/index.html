@@ -468,6 +468,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#utility-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utility Functions
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -482,6 +491,24 @@
   
     <nav class="md-nav" aria-label="viz Module">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smart-dual-theming-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smart Dual Theming System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theme-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Theme Features
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#2d-visualization" class="md-nav__link">
@@ -514,6 +541,39 @@
   <a href="#network-visualization" class="md-nav__link">
     <span class="md-ellipsis">
       Network Visualization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removed-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Removed Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_molecular_dashboard-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~~create_molecular_dashboard()~~ [REMOVED]
     </span>
   </a>
   
@@ -587,6 +647,7 @@
 
 
 <h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>Complete reference for Quantifyr's data processing and dual-theme visualization capabilities.</p>
 <h2 id="data_utils-module">data_utils Module<a class="headerlink" href="#data_utils-module" title="Permanent link">&para;</a></h2>
 <h3 id="molecular-parsing">Molecular Parsing<a class="headerlink" href="#molecular-parsing" title="Permanent link">&para;</a></h3>
 <h4 id="parse_smilessmiles-str-config-optionalmoleculeconfig-none-mol"><code>parse_smiles(smiles: str, config: Optional[MoleculeConfig] = None) -&gt; Mol</code><a class="headerlink" href="#parse_smilessmiles-str-config-optionalmoleculeconfig-none-mol" title="Permanent link">&para;</a></h4>
@@ -617,26 +678,28 @@
 <li><code>max_atoms</code> (int): Maximum number of atoms allowed (default: 200)</li>
 </ul>
 <h3 id="feature-extraction">Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permanent link">&para;</a></h3>
-<h4 id="extract_atom_featuresmol-mol-listlistfloat"><code>extract_atom_features(mol: Mol) -&gt; List[List[float]]</code><a class="headerlink" href="#extract_atom_featuresmol-mol-listlistfloat" title="Permanent link">&para;</a></h4>
-<p>Extract atomic features for each atom in the molecule.</p>
-<p><strong>Features extracted:</strong></p>
-<ul>
-<li>Atomic number</li>
-<li>Degree (number of bonds)</li>
-<li>Formal charge</li>
-<li>Hybridization type (SP, SP2, SP3, etc.)</li>
-<li>Aromaticity (boolean)</li>
-<li>Number of implicit hydrogens</li>
-</ul>
+<h4 id="extract_atom_featuresmol-mol-npndarray"><code>extract_atom_features(mol: Mol) -&gt; np.ndarray</code><a class="headerlink" href="#extract_atom_featuresmol-mol-npndarray" title="Permanent link">&para;</a></h4>
+<p>Extract comprehensive atomic features from molecule for ML models.</p>
+<p><strong>Feature vector (6 features per atom):</strong></p>
+<ol>
+<li><strong>Atomic number</strong> - Element identity (C=6, N=7, O=8, etc.)</li>
+<li><strong>Degree</strong> - Number of bonded neighbors</li>
+<li><strong>Formal charge</strong> - Charge on atom</li>
+<li><strong>Hybridization</strong> - SP/SP2/SP3 hybridization state</li>
+<li><strong>Aromaticity</strong> - Is atom in aromatic ring (1/0)</li>
+<li><strong>Hydrogen count</strong> - Number of attached hydrogens</li>
+</ol>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>mol</code> (Mol): RDKit molecule object</li>
+<li><code>mol</code> (Mol): RDKit molecule object (from parse_smiles)</li>
 </ul>
-<p><strong>Returns:</strong> List of feature vectors, one per atom</p>
+<p><strong>Returns:</strong> Array of shape (n_atoms, 6) with atomic features</p>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CCO&quot;</span><span class="p">)</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">atom_features</span> <span class="o">=</span> <span class="n">extract_atom_features</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Atom features shape: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_features</span><span class="p">)</span><span class="si">}</span><span class="s2"> atoms x </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_features</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2"> features&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CCO&quot;</span><span class="p">)</span>  <span class="c1"># ethanol</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">features</span> <span class="o">=</span> <span class="n">extract_atom_features</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># (9, 6) - 9 atoms, 6 features</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># First atom (Carbon): [6.0, 4.0, 0.0, 3.0, 0.0, 3.0]</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Element C, degree 4, no charge, SP3, not aromatic, 3 H atoms</span>
 </span></code></pre></div>
 <h4 id="extract_bond_featuresmol-mol-listlistfloat"><code>extract_bond_features(mol: Mol) -&gt; List[List[float]]</code><a class="headerlink" href="#extract_bond_featuresmol-mol-listlistfloat" title="Permanent link">&para;</a></h4>
 <p>Extract bond features for each bond in the molecule.</p>
@@ -730,131 +793,207 @@
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valid molecules: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_df</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">valid_df</span><span class="p">[[</span><span class="s1">&#39;SMILES&#39;</span><span class="p">,</span> <span class="s1">&#39;MW&#39;</span><span class="p">,</span> <span class="s1">&#39;LogP&#39;</span><span class="p">,</span> <span class="s1">&#39;TPSA&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </span></code></pre></div>
+<h3 id="utility-functions">Utility Functions<a class="headerlink" href="#utility-functions" title="Permanent link">&para;</a></h3>
+<h4 id="get_element_symbolatomic_num-int-str"><code>get_element_symbol(atomic_num: int) -&gt; str</code><a class="headerlink" href="#get_element_symbolatomic_num-int-str" title="Permanent link">&para;</a></h4>
+<p>Get element symbol from atomic number using RDKit's periodic table.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>atomic_num</code> (int): Atomic number (1 for H, 6 for C, etc.)</li>
+</ul>
+<p><strong>Returns:</strong> Element symbol string (e.g., "H", "C", "N", "O")</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_element_symbol</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">get_element_symbol</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>   <span class="c1"># &quot;C&quot;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">get_element_symbol</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>   <span class="c1"># &quot;N&quot; </span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">get_element_symbol</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>   <span class="c1"># &quot;O&quot;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">get_element_symbol</span><span class="p">(</span><span class="mi">999</span><span class="p">))</span> <span class="c1"># &quot;#999&quot; (unknown elements)</span>
+</span></code></pre></div>
 <hr />
 <h2 id="viz-module">viz Module<a class="headerlink" href="#viz-module" title="Permanent link">&para;</a></h2>
+<p>The visualization module provides publication-ready plots with dual-theme support and smart features. All plots automatically apply your chosen theme with intelligent styling.</p>
+<h3 id="smart-dual-theming-system">Smart Dual Theming System<a class="headerlink" href="#smart-dual-theming-system" title="Permanent link">&para;</a></h3>
+<h4 id="set_themetheme-str-none"><code>set_theme(theme: str) -&gt; None</code><a class="headerlink" href="#set_themetheme-str-none" title="Permanent link">&para;</a></h4>
+<p>Set the global visualization theme affecting all subsequent plots.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>theme</code> (str): Theme name - "dark" or "light"</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_theme</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">set_theme</span><span class="p">(</span><span class="s1">&#39;dark&#39;</span><span class="p">)</span>   <span class="c1"># Dark theme with midnight background</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">set_theme</span><span class="p">(</span><span class="s1">&#39;light&#39;</span><span class="p">)</span>  <span class="c1"># Light theme for presentations</span>
+</span></code></pre></div>
+<h4 id="get_current_theme-dict"><code>get_current_theme() -&gt; Dict</code><a class="headerlink" href="#get_current_theme-dict" title="Permanent link">&para;</a></h4>
+<p>Get the current theme configuration dictionary.</p>
+<h3 id="theme-features">Theme Features<a class="headerlink" href="#theme-features" title="Permanent link">&para;</a></h3>
+<p>All visualization functions automatically apply your chosen theme featuring:</p>
+<ul>
+<li><strong>Dual theme support</strong> - Dark midnight or clean light backgrounds</li>
+<li><strong>Smart text contrast</strong> - Dark text on light atoms, light text on dark atoms  </li>
+<li><strong>Professional color palettes</strong> with theme-matched accents</li>
+<li><strong>Element-specific CPK colors</strong> for all atoms</li>
+<li><strong>Clean typography</strong> with Inter font family</li>
+<li><strong>Meaningful titles</strong> using molecule names when provided</li>
+</ul>
 <h3 id="2d-visualization">2D Visualization<a class="headerlink" href="#2d-visualization" title="Permanent link">&para;</a></h3>
-<h4 id="draw_molecule_2dmol-mol-width-int-300-height-int-300-kwargs-pilimage"><code>draw_molecule_2d(mol: Mol, width: int = 300, height: int = 300, **kwargs) -&gt; PIL.Image</code><a class="headerlink" href="#draw_molecule_2dmol-mol-width-int-300-height-int-300-kwargs-pilimage" title="Permanent link">&para;</a></h4>
-<p>Generate 2D molecular structure diagrams.</p>
+<h4 id="draw_molecule_2dmol-mol-size-tupleint-int-400-400-plotlygraph_objectsfigure"><code>draw_molecule_2d(mol: Mol, size: Tuple[int, int] = (400, 400)) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#draw_molecule_2dmol-mol-size-tupleint-int-400-400-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Generate interactive 2D molecular structure plots with theme support.</p>
+<p><strong>NEW Features:</strong></p>
+<ul>
+<li><strong>Interactive plots</strong> instead of static images  </li>
+<li><strong>Theme-matched styling</strong> with background and bond colors</li>
+<li><strong>Smart text contrast</strong> on all atom colors</li>
+<li><strong>CPK element coloring</strong> with element symbols</li>
+<li><strong>Hover information</strong> showing element type and coordinates</li>
+<li><strong>Different bond styles</strong> for single/double/triple bonds</li>
+</ul>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>mol</code> (Mol): RDKit molecule object</li>
-<li><code>width</code> (int): Image width in pixels (default: 300)</li>
-<li><code>height</code> (int): Image height in pixels (default: 300)</li>
-<li><code>**kwargs</code>: Additional RDKit drawing options</li>
+<li><code>size</code> (Tuple[int, int]): Figure size (width, height) - default: (400, 400)</li>
 </ul>
-<p><strong>Returns:</strong> PIL Image object</p>
+<p><strong>Returns:</strong> Plotly Figure object with Quantifyr theme applied</p>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_molecule_2d</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">img</span> <span class="o">=</span> <span class="n">draw_molecule_2d</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;caffeine_2d.png&quot;</span><span class="p">)</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">img</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_smiles</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_molecule_2d</span><span class="p">,</span> <span class="n">set_theme</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">set_theme</span><span class="p">(</span><span class="s1">&#39;dark&#39;</span><span class="p">)</span>  <span class="c1"># or &#39;light&#39;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">draw_molecule_2d</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Interactive plot with theme</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="s2">&quot;caffeine_2d.html&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="3d-visualization">3D Visualization<a class="headerlink" href="#3d-visualization" title="Permanent link">&para;</a></h3>
-<h4 id="create_3d_conformer_plotmol-mol-kwargs-plotlygraph_objectsfigure"><code>create_3d_conformer_plot(mol: Mol, **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#create_3d_conformer_plotmol-mol-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
-<p>Create interactive 3D molecular conformer visualization.</p>
-<p><strong>Features:</strong></p>
+<h4 id="create_3d_conformer_plotmol-mol-molecule_name-optionalstr-none-smiles-optionalstr-none-plotlygraph_objectsfigure"><code>create_3d_conformer_plot(mol: Mol, molecule_name: Optional[str] = None, smiles: Optional[str] = None) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#create_3d_conformer_plotmol-mol-molecule_name-optionalstr-none-smiles-optionalstr-none-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Create smart 3D molecular conformer visualization with perfect zoom and intelligent features.</p>
+<p><strong>NEW Smart Features:</strong></p>
 <ul>
-<li>Rotatable 3D structure</li>
-<li>Atom labels and element-based coloring</li>
-<li>Bond representations</li>
-<li>Interactive hover information</li>
+<li><strong>Perfect zoom level</strong> automatically calculated based on molecule size</li>
+<li><strong>Smart text contrast</strong> - Dark text on light atoms, light text on dark atoms  </li>
+<li><strong>Meaningful titles</strong> using molecule names or SMILES instead of generic titles</li>
+<li><strong>Custom clean controls</strong> with only essential 3D navigation tools</li>
+<li><strong>Theme-adaptive colors</strong> for both dark and light modes</li>
+<li><strong>Clean 3D space</strong> without axis clutter</li>
+<li><strong>Enhanced hover information</strong> with molecule context</li>
 </ul>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>mol</code> (Mol): RDKit molecule object</li>
-<li><code>**kwargs</code>: Additional plotting options</li>
+<li><code>molecule_name</code> (str, optional): Molecule name for smart title</li>
+<li><code>smiles</code> (str, optional): SMILES string for title if no name provided</li>
 </ul>
-<p><strong>Returns:</strong> Plotly Figure object</p>
+<p><strong>Returns:</strong> Plotly Figure object with optimal zoom and Quantifyr theme</p>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">create_3d_conformer_plot</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Opens in browser</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="s2">&quot;caffeine_3d.html&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>  <span class="c1"># caffeine</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">create_3d_conformer_plot</span><span class="p">(</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">mol</span><span class="p">,</span> 
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">molecule_name</span><span class="o">=</span><span class="s2">&quot;Caffeine&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">smiles</span><span class="o">=</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Opens at perfect zoom level with meaningful title!</span>
 </span></code></pre></div>
 <h3 id="property-analysis">Property Analysis<a class="headerlink" href="#property-analysis" title="Permanent link">&para;</a></h3>
-<h4 id="plot_molecular_propertiesdf-pddataframe-kwargs-plotlygraph_objectsfigure"><code>plot_molecular_properties(df: pd.DataFrame, **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_molecular_propertiesdf-pddataframe-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
-<p>Create interactive scatter matrix of molecular properties.</p>
+<h4 id="plot_molecular_propertiesdf-pddataframe-properties-liststr-plotlygraph_objectsfigure"><code>plot_molecular_properties(df: pd.DataFrame, properties: List[str]) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_molecular_propertiesdf-pddataframe-properties-liststr-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Create interactive scatter matrix of molecular properties with professional styling.</p>
 <p><strong>Features:</strong></p>
 <ul>
-<li>Scatter plots for all property combinations</li>
-<li>Hover information showing SMILES and values</li>
-<li>Configurable markers and colors</li>
+<li><strong>Quantifyr theme</strong> applied automatically</li>
+<li><strong>Professional color scheme</strong> with cyan accents</li>
+<li><strong>Hover information</strong> showing SMILES and values</li>
+<li><strong>Clean scatter plots</strong> for all property combinations</li>
 </ul>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>df</code> (pd.DataFrame): Molecular DataFrame from <code>create_molecular_dataframe()</code></li>
-<li><code>**kwargs</code>: Additional plotting options</li>
+<li><code>properties</code> (List[str]): List of property names to plot</li>
 </ul>
-<p><strong>Returns:</strong> Plotly Figure object</p>
+<p><strong>Returns:</strong> Plotly Figure object with consistent theming</p>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_molecular_dataframe</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_molecular_properties</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">smiles_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">]</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">create_molecular_dataframe</span><span class="p">(</span><span class="n">smiles_list</span><span class="p">)</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_molecular_properties</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_molecular_dataframe</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_molecular_properties</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">smiles_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">]</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">create_molecular_dataframe</span><span class="p">(</span><span class="n">smiles_list</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_molecular_properties</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;molecular_weight&quot;</span><span class="p">,</span> <span class="s2">&quot;logp&quot;</span><span class="p">,</span> <span class="s2">&quot;tpsa&quot;</span><span class="p">])</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
-<h4 id="plot_property_distributiondf-pddataframe-properties-liststr-kwargs-plotlygraph_objectsfigure"><code>plot_property_distribution(df: pd.DataFrame, properties: List[str], **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_property_distributiondf-pddataframe-properties-liststr-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
-<p>Analyze property distributions with histograms and box plots.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>df</code> (pd.DataFrame): Molecular DataFrame</li>
-<li><code>properties</code> (List[str]): List of property names to analyze</li>
-<li><code>**kwargs</code>: Additional plotting options</li>
-</ul>
-<p><strong>Returns:</strong> Multi-subplot figure with distribution plots</p>
-<h4 id="create_molecular_dashboarddf-pddataframe-plotlygraph_objectsfigure"><code>create_molecular_dashboard(df: pd.DataFrame) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#create_molecular_dashboarddf-pddataframe-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
-<p>Generate comprehensive molecular analysis dashboard.</p>
+<h4 id="plot_property_distributiondf-pddataframe-property_name-str-plotlygraph_objectsfigure"><code>plot_property_distribution(df: pd.DataFrame, property_name: str) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_property_distributiondf-pddataframe-property_name-str-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Analyze individual property distributions with professional styling.</p>
 <p><strong>Features:</strong></p>
 <ul>
-<li>Property scatter plots</li>
-<li>Distribution histograms</li>
-<li>Statistical summaries</li>
-<li>Interactive filtering capabilities</li>
+<li><strong>Dual-plot layout</strong> with histogram and box plot</li>
+<li><strong>Quantifyr theme</strong> with cyan accents</li>
+<li><strong>Professional typography</strong> and spacing</li>
 </ul>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>df</code> (pd.DataFrame): Molecular DataFrame</li>
+<li><code>property_name</code> (str): Single property name to analyze</li>
 </ul>
-<p><strong>Returns:</strong> Plotly Figure object with multiple subplots</p>
-<p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Analyze diverse molecule set</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">smiles</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;CCC&quot;</span><span class="p">,</span> <span class="s2">&quot;CCCC&quot;</span><span class="p">,</span>                    <span class="c1"># alkanes</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccc2ccccc2c1&quot;</span><span class="p">,</span>            <span class="c1"># aromatics</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">,</span>         <span class="c1"># caffeine</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="s2">&quot;CC(=O)OC1=CC=CC=C1C(=O)O&quot;</span>               <span class="c1"># aspirin</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">]</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">create_molecular_dataframe</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">dashboard</span> <span class="o">=</span> <span class="n">create_molecular_dashboard</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">dashboard</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></code></pre></div>
+<p><strong>Returns:</strong> Multi-subplot figure with distribution analysis</p>
 <h3 id="network-visualization">Network Visualization<a class="headerlink" href="#network-visualization" title="Permanent link">&para;</a></h3>
-<h4 id="plot_molecular_networkmol-mol-kwargs-plotlygraph_objectsfigure"><code>plot_molecular_network(mol: Mol, **kwargs) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_molecular_networkmol-mol-kwargs-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
-<p>Visualize molecular graph structure as an interactive network.</p>
-<p><strong>Features:</strong></p>
+<h4 id="plot_molecular_networkgraphs-listdata-max_molecules-int-10-molecule_names-optionalliststr-none-smiles_list-optionalliststr-none-plotlygraph_objectsfigure"><code>plot_molecular_network(graphs: List[Data], max_molecules: int = 10, molecule_names: Optional[List[str]] = None, smiles_list: Optional[List[str]] = None) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_molecular_networkgraphs-listdata-max_molecules-int-10-molecule_names-optionalliststr-none-smiles_list-optionalliststr-none-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Visualize molecular graphs as smart network plots with meaningful titles and enhanced readability.</p>
+<p><strong>NEW Smart Features:</strong></p>
 <ul>
-<li>Nodes represent atoms (colored by element)</li>
-<li>Edges represent bonds (sized by bond order)</li>
-<li>Interactive layout with hover information</li>
-<li>Force-directed positioning</li>
+<li><strong>Meaningful subplot titles</strong> using molecule names instead of "Molecule 1, 2, 3..."</li>
+<li><strong>Smart text contrast</strong> - Dark text on light atoms, light text on dark atoms</li>
+<li><strong>Larger atoms</strong> with better visibility (22px)</li>
+<li><strong>3-column layout</strong> for optimal readability  </li>
+<li><strong>Theme-adaptive edge colors</strong> and styling</li>
+<li><strong>Enhanced hover information</strong> with molecule context</li>
+<li><strong>Clean controls</strong> with simplified toolbar</li>
 </ul>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>mol</code> (Mol): RDKit molecule object</li>
-<li><code>**kwargs</code>: Additional plotting options</li>
+<li><code>graphs</code> (List[Data]): List of PyTorch Geometric Data objects</li>
+<li><code>max_molecules</code> (int): Maximum number of molecules to display (default: 10)</li>
+<li><code>molecule_names</code> (List[str], optional): List of molecule names for titles</li>
+<li><code>smiles_list</code> (List[str], optional): List of SMILES strings for titles</li>
 </ul>
-<p><strong>Returns:</strong> Plotly Figure object</p>
+<p><strong>Returns:</strong> Plotly Figure object with smart network visualization</p>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">mol</span> <span class="o">=</span> <span class="n">parse_smiles</span><span class="p">(</span><span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">)</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_molecular_network</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_molecule_dataset</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">smiles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CCO&quot;</span><span class="p">,</span> <span class="s2">&quot;c1ccccc1&quot;</span><span class="p">,</span> <span class="s2">&quot;CN1C=NC2=C1C(=O)N(C(=O)N2C)C&quot;</span><span class="p">,</span> <span class="s2">&quot;CC(=O)OC1=CC=CC=C1C(=O)O&quot;</span><span class="p">]</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">molecule_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ethanol&quot;</span><span class="p">,</span> <span class="s2">&quot;Benzene&quot;</span><span class="p">,</span> <span class="s2">&quot;Caffeine&quot;</span><span class="p">,</span> <span class="s2">&quot;Aspirin&quot;</span><span class="p">]</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">graphs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_molecule_dataset</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_molecular_network</span><span class="p">(</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="n">graphs</span><span class="p">,</span> 
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="n">max_molecules</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="n">molecule_names</span><span class="o">=</span><span class="n">molecule_names</span><span class="p">,</span>  <span class="c1"># Meaningful titles!</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="n">smiles_list</span><span class="o">=</span><span class="n">smiles</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">)</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Shows molecules with readable titles and element symbols</span>
 </span></code></pre></div>
+<h3 id="feature-analysis">Feature Analysis<a class="headerlink" href="#feature-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="plot_feature_importancefeatures-npndarray-feature_names-liststr-plotlygraph_objectsfigure"><code>plot_feature_importance(features: np.ndarray, feature_names: List[str]) -&gt; plotly.graph_objects.Figure</code><a class="headerlink" href="#plot_feature_importancefeatures-npndarray-feature_names-liststr-plotlygraph_objectsfigure" title="Permanent link">&para;</a></h4>
+<p>Plot feature importance analysis with professional styling.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Gradient coloring</strong> highlighting top features</li>
+<li><strong>Quantifyr theme</strong> with consistent colors</li>
+<li><strong>Clean bar chart</strong> with value labels</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>features</code> (np.ndarray): Feature importance values</li>
+<li><code>feature_names</code> (List[str]): Names of features</li>
+</ul>
+<p><strong>Returns:</strong> Plotly Figure object with feature importance visualization</p>
+<h2 id="removed-functions">Removed Functions<a class="headerlink" href="#removed-functions" title="Permanent link">&para;</a></h2>
+<h3 id="create_molecular_dashboard-removed">~~<code>create_molecular_dashboard()</code>~~ <strong>[REMOVED]</strong><a class="headerlink" href="#create_molecular_dashboard-removed" title="Permanent link">&para;</a></h3>
+<p>This function has been removed for better flexibility. Instead, use individual plotting functions:</p>
+<ul>
+<li><code>plot_molecular_properties()</code> for scatter matrices</li>
+<li><code>plot_property_distribution()</code> for individual property analysis  </li>
+<li><code>create_3d_conformer_plot()</code> for 3D structures</li>
+<li><code>plot_molecular_network()</code> for graph networks</li>
+</ul>
+<p>This approach gives you more control over customization and layout.</p>
 <hr />
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <p>All functions include comprehensive error handling:</p>
