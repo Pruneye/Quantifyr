@@ -14,15 +14,15 @@ def compute_molecular_descriptors(mol: Chem.Mol) -> Dict[str, float]:
     """
     Compute drug-like molecular descriptors for QSAR/property prediction.
 
-    **Calculated properties:**
-    - **molecular_weight** - Molecular weight in Daltons
-    - **logp** - Lipophilicity (partition coefficient)
-    - **tpsa** - Topological polar surface area (Ų)
-    - **num_rotatable_bonds** - Flexibility measure
-    - **num_hbd** - Hydrogen bond donors (NH, OH groups)
-    - **num_hba** - Hydrogen bond acceptors (N, O atoms)
-    - **num_rings** - Ring count (important for rigidity)
-    - **num_aromatic_rings** - Aromatic ring count
+    Calculated properties:
+    - molecular_weight - Molecular weight in Daltons
+    - logp - Lipophilicity (partition coefficient)
+    - tpsa - Topological polar surface area (Ų)
+    - num_rotatable_bonds - Flexibility measure
+    - num_hbd - Hydrogen bond donors (NH, OH groups)
+    - num_hba - Hydrogen bond acceptors (N, O atoms)
+    - num_rings - Ring count (important for rigidity)
+    - num_aromatic_rings - Aromatic ring count
 
     Args:
         mol: RDKit molecule object (from parse_smiles)

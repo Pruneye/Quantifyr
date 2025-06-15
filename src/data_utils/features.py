@@ -21,13 +21,13 @@ def extract_atom_features(mol: Chem.Mol) -> np.ndarray:
     """
     Extract comprehensive atomic features from molecule for ML models.
 
-    **Feature vector (6 features per atom):**
-    1. **Atomic number** - Element identity (C=6, N=7, O=8, etc.)
-    2. **Degree** - Number of bonded neighbors
-    3. **Formal charge** - Charge on atom
-    4. **Hybridization** - SP/SP2/SP3 hybridization state
-    5. **Aromaticity** - Is atom in aromatic ring (1/0)
-    6. **Hydrogen count** - Number of attached hydrogens
+    Feature vector (6 features per atom):
+    1. Atomic number - Element identity (C=6, N=7, O=8, etc.)
+    2. Degree - Number of bonded neighbors
+    3. Formal charge - Charge on atom
+    4. Hybridization - SP/SP2/SP3 hybridization state
+    5. Aromaticity - Is atom in aromatic ring (1/0)
+    6. Hydrogen count - Number of attached hydrogens
 
     Args:
         mol: RDKit molecule object (from parse_smiles)
@@ -64,10 +64,10 @@ def extract_bond_features(mol: Chem.Mol) -> np.ndarray:
     """
     Extract bond features from molecule for graph neural networks.
 
-    **Feature vector (3 features per bond):**
-    1. **Bond type** - Single=1, Double=2, Triple=3, Aromatic=1.5
-    2. **Conjugation** - Is bond part of conjugated system (1/0)
-    3. **Ring membership** - Is bond in a ring (1/0)
+    Feature vector (3 features per bond):
+    1. Bond type - Single=1, Double=2, Triple=3, Aromatic=1.5
+    2. Conjugation - Is bond part of conjugated system (1/0)
+    3. Ring membership - Is bond in a ring (1/0)
 
     Args:
         mol: RDKit molecule object (from parse_smiles)

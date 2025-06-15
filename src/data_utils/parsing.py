@@ -18,7 +18,7 @@ class MoleculeConfig:
     add_hydrogens: bool = True
     sanitize: bool = True
     kekulize: bool = False
-    max_atoms: int = 100
+    max_atoms: int = 1000
 
     def __post_init__(self):
         if self.max_atoms < 1:
