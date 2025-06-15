@@ -15,9 +15,7 @@ from .themes import get_current_theme
 from .core import apply_quantifyr_theme
 
 
-def plot_molecular_properties(
-    df: pd.DataFrame, properties: List[str]
-) -> go.Figure:
+def plot_molecular_properties(df: pd.DataFrame, properties: List[str]) -> go.Figure:
     """
     Create interactive scatter matrix plot of molecular properties.
 
@@ -59,9 +57,7 @@ def plot_molecular_properties(
     return apply_quantifyr_theme(fig)
 
 
-def plot_property_distribution(
-    df: pd.DataFrame, property_name: str
-) -> go.Figure:
+def plot_property_distribution(df: pd.DataFrame, property_name: str) -> go.Figure:
     """
     Plot distribution of molecular property with professional styling.
 
@@ -75,9 +71,7 @@ def plot_property_distribution(
     valid_df = df[df["valid"]].copy()
 
     if valid_df.empty or property_name not in valid_df.columns:
-        raise ValueError(
-            f"Property '{property_name}' not found in valid data"
-        )
+        raise ValueError(f"Property '{property_name}' not found in valid data")
 
     fig = make_subplots(
         rows=2,
