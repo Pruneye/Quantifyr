@@ -28,7 +28,7 @@ class TestMoleculeConfig:
         assert config.add_hydrogens == True
         assert config.sanitize == True
         assert config.kekulize == False
-        assert config.max_atoms == 100
+        assert config.max_atoms == 1000
 
     def test_custom_config(self):
         """Test custom configuration values."""
