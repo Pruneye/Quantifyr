@@ -1,6 +1,6 @@
 # Data Processing Tutorial
 
-This tutorial covers molecular data processing capabilities in Quantifyr, from basic SMILES parsing to advanced batch analysis.
+Learn how to process molecular data in Quantifyr with comprehensive SMILES parsing, feature extraction, and batch analysis. All functions provide clear, human-readable output with element symbols, detailed molecular information, and modern theme support.
 
 ## Basic SMILES Parsing
 
@@ -52,27 +52,36 @@ if mol is not None:
 
 ## Feature Extraction
 
-### Atomic Features
+### Atomic Features with Element Symbols
 
 ```python
-from data_utils import parse_smiles, extract_atom_features
+from data_utils import parse_smiles, extract_atom_features, get_element_symbol
 
 mol = parse_smiles("CCO")
 atom_features = extract_atom_features(mol)
 
 print(f"Number of atoms: {len(atom_features)}")
 print(f"Features per atom: {len(atom_features[0])}")
-print(f"First atom features: {atom_features[0]}")
+
+# Show first atom with element symbol
+first_atom = atom_features[0]
+element = get_element_symbol(int(first_atom[0]))
+print(f"First atom ({element}): {first_atom}")
 ```
 
-**Feature meanings:**
+**Feature meanings (6 features per atom):**
 
-- Index 0: Atomic number
-- Index 1: Degree (number of bonds)
-- Index 2: Formal charge
-- Index 3: Hybridization (1=SP, 2=SP2, 3=SP3, etc.)
-- Index 4: Aromaticity (0 or 1)
-- Index 5: Number of implicit hydrogens
+1. **Atomic number** - Element identity (C=6, N=7, O=8, etc.)
+2. **Degree** - Number of bonded neighbors
+3. **Formal charge** - Charge on atom  
+4. **Hybridization** - SP/SP2/SP3 hybridization state
+5. **Aromaticity** - Is atom in aromatic ring (1/0)
+6. **Hydrogen count** - Number of attached hydrogens
+
+**Understanding the output:**
+
+- First atom (Carbon): `[6.0, 4.0, 0.0, 3.0, 0.0, 3.0]`
+- Element C, degree 4, no charge, SP3, not aromatic, 3 H atoms
 
 ### Bond Features
 
@@ -87,11 +96,15 @@ print(f"Features per bond: {len(bond_features[0])}")
 print(f"First bond features: {bond_features[0]}")
 ```
 
-**Feature meanings:**
+**Feature meanings (3 features per bond):**
 
-- Index 0: Bond type (1=single, 2=double, 3=triple, 1.5=aromatic)
-- Index 1: Conjugation (0 or 1)
-- Index 2: Ring membership (0 or 1)
+1. **Bond type** - Single=1, Double=2, Triple=3, Aromatic=1.5
+2. **Conjugation** - Is bond part of conjugated system (1/0)
+3. **Ring membership** - Is bond in a ring (1/0)
+
+**Understanding the output:**
+
+- Benzene bond: `[1.5, 1.0, 1.0]` - Aromatic bond, conjugated, in ring
 
 ## Graph Construction
 
@@ -167,11 +180,16 @@ for name, smiles in molecules.items():
 
 ### Property Interpretation
 
-- **MW (Molecular Weight)**: Mass in Daltons
-- **LogP**: Lipophilicity (higher = more lipophilic)
-- **TPSA**: Polar surface area (affects permeability)
-- **Rotatable Bonds**: Flexibility indicator
-- **HBD/HBA**: Hydrogen bonding capacity
+**Drug-like descriptors for QSAR analysis:**
+
+- **molecular_weight** - Molecular weight in Daltons (46.1 for ethanol)
+- **logp** - Lipophilicity/partition coefficient (-0.31 for ethanol = hydrophilic)  
+- **tpsa** - Topological polar surface area in Ų (affects membrane permeability)
+- **num_rotatable_bonds** - Flexibility measure (more = more flexible)
+- **num_hbd** - Hydrogen bond donors (NH, OH groups)
+- **num_hba** - Hydrogen bond acceptors (N, O atoms)
+- **num_rings** - Ring count (important for rigidity)
+- **num_aromatic_rings** - Aromatic ring count
 
 ## Batch Processing
 

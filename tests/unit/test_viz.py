@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from rdkit import Chem
-from PIL import Image
-
 from viz import (
     draw_molecule_2d,
     plot_molecular_properties,
@@ -12,7 +10,6 @@ from viz import (
     plot_molecular_network,
     create_3d_conformer_plot,
     plot_feature_importance,
-    create_molecular_dashboard,
 )
 from data_utils import (
     parse_smiles,
@@ -27,17 +24,19 @@ class TestDrawMolecule2D:
     def test_draw_valid_molecule(self):
         """Test drawing a valid molecule."""
         mol = parse_smiles("CCO")
-        img = draw_molecule_2d(mol)
+        fig = draw_molecule_2d(mol)
 
-        assert isinstance(img, Image.Image)
-        assert img.size == (300, 300)  # Default size
+        assert isinstance(fig, go.Figure)
+        assert fig.layout.width == 400  # Default width
+        assert fig.layout.height == 400  # Default height
 
     def test_draw_custom_size(self):
         """Test drawing with custom size."""
         mol = parse_smiles("CCO")
-        img = draw_molecule_2d(mol, size=(500, 400))
+        fig = draw_molecule_2d(mol, size=(500, 400))
 
-        assert img.size == (500, 400)
+        assert fig.layout.width == 500
+        assert fig.layout.height == 400
 
     def test_draw_none_molecule(self):
         """Test drawing None molecule raises error."""
@@ -140,6 +139,23 @@ class TestPlotMolecularNetwork:
         assert isinstance(fig, go.Figure)
         # Should limit to 3 molecules, so fewer traces than all molecules
 
+    def test_plot_network_custom_grid(self):
+        """Test plotting with custom grid layout."""
+        smiles_list = ["CCO", "CC", "CCC", "CCCC"]
+        graphs, _ = load_molecule_dataset(smiles_list)
+
+        # Test custom 2x2 grid
+        fig = plot_molecular_network(graphs, cols=2, rows=2)
+
+        assert isinstance(fig, go.Figure)
+        assert len(fig.data) > 0
+
+        # Test custom 4x1 grid
+        fig = plot_molecular_network(graphs, cols=4, rows=1)
+
+        assert isinstance(fig, go.Figure)
+        assert len(fig.data) > 0
+
 
 class TestCreate3DConformerPlot:
     """Test 3D conformer visualization."""
@@ -186,45 +202,6 @@ class TestPlotFeatureImportance:
             plot_feature_importance(features, feature_names)
 
 
-class TestCreateMolecularDashboard:
-    """Test molecular dashboard creation."""
-
-    def test_create_dashboard_valid_data(self):
-        """Test creating dashboard with valid data."""
-        smiles_list = ["CCO", "CC", "CCC", "CCCC"]
-        df = create_molecular_dataframe(smiles_list)
-        molecules = [parse_smiles(s) for s in smiles_list]
-
-        dashboard = create_molecular_dashboard(df, molecules)
-
-        assert isinstance(dashboard, dict)
-        assert len(dashboard) > 0
-
-        # Should contain various plot types
-        for key, fig in dashboard.items():
-            assert isinstance(fig, go.Figure)
-
-    def test_create_dashboard_empty_molecules(self):
-        """Test creating dashboard with empty molecule list."""
-        df = create_molecular_dataframe(["CCO", "CC"])
-        molecules = []
-
-        dashboard = create_molecular_dashboard(df, molecules)
-
-        assert isinstance(dashboard, dict)
-        # Should still create some plots even without 3D structure
-
-    def test_create_dashboard_minimal_data(self):
-        """Test creating dashboard with minimal data."""
-        smiles_list = ["CCO"]
-        df = create_molecular_dataframe(smiles_list)
-        molecules = [parse_smiles(smiles_list[0])]
-
-        dashboard = create_molecular_dashboard(df, molecules)
-
-        assert isinstance(dashboard, dict)
-
-
 # Integration tests combining data processing and visualization
 class TestDataVizIntegration:
     """Test integration between data processing and visualization."""
@@ -256,8 +233,8 @@ class TestDataVizIntegration:
         # Test 2D drawing
         for mol in molecules:
             if mol is not None:
-                img = draw_molecule_2d(mol)
-                assert isinstance(img, Image.Image)
+                fig = draw_molecule_2d(mol)
+                assert isinstance(fig, go.Figure)
 
         # Test property plotting
         numeric_cols = df.select_dtypes(include=[np.number]).columns

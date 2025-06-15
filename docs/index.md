@@ -43,7 +43,6 @@ df = create_molecular_dataframe(["CCO", "c1ccccc1", "CC(=O)OC1=CC=CC=C1C(=O)O"])
 - `draw_molecule_2d()` - Generate 2D molecular structures
 - `create_3d_conformer_plot()` - Interactive 3D molecular models
 - `plot_molecular_properties()` - Property correlation analysis
-- `create_molecular_dashboard()` - Comprehensive analysis dashboards
 
 ## Tutorials
 

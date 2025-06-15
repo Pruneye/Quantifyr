@@ -1,10 +1,24 @@
 # Visualization Tutorial
 
-This tutorial covers all molecular visualization capabilities in Quantifyr, from basic 2D structures to interactive dashboards.
+Create beautiful, publication-ready molecular visualizations with Quantifyr's modern dual-theme system. All plots automatically apply your chosen theme (dark or light) with element symbols, smart text contrast, CPK coloring, and clean aesthetics - no additional styling required!
+
+## Theme Control
+
+### Setting Your Preferred Theme
+
+```python
+from viz import set_theme
+
+# Choose your theme (affects all visualizations)
+set_theme('dark')   # Dark theme (default)
+set_theme('light')  # Light theme for presentations
+
+# All subsequent plots will use the selected theme
+```
 
 ## 2D Molecular Structures
 
-### Basic 2D Drawing
+### Interactive 2D Plotting (NEW!)
 
 ```python
 from data_utils import parse_smiles
@@ -14,17 +28,22 @@ from viz import draw_molecule_2d
 caffeine = parse_smiles("CN1C=NC2=C1C(=O)N(C(=O)N2C)C")
 aspirin = parse_smiles("CC(=O)OC1=CC=CC=C1C(=O)O")
 
-# Create 2D images
-caffeine_img = draw_molecule_2d(caffeine)
-aspirin_img = draw_molecule_2d(aspirin, width=400, height=300)
+# Create interactive 2D plots (now matches theme!)
+caffeine_fig = draw_molecule_2d(caffeine)
+aspirin_fig = draw_molecule_2d(aspirin, size=(400, 300))
 
-# Display images
-caffeine_img.show()
-aspirin_img.show()
+# Automatically includes:
+# ✓ Element symbols with smart text contrast
+# ✓ CPK coloring for all atoms
+# ✓ Interactive hover information
+# ✓ Theme-matched background and bonds
+# ✓ Different bond styles for single/double/triple bonds
 
-# Save images
-caffeine_img.save("caffeine_2d.png")
-aspirin_img.save("aspirin_2d.png")
+caffeine_fig.show()
+aspirin_fig.show()
+
+# Save as interactive HTML
+caffeine_fig.write_html("caffeine_2d.html")
 ```
 
 ### Custom 2D Drawing Options
@@ -55,50 +74,44 @@ for name, mol in molecules:
 
 ## 3D Interactive Visualizations
 
-### Basic 3D Conformers
+### Smart 3D Conformers with Perfect Zoom
 
 ```python
 from viz import create_3d_conformer_plot
 
-# Create 3D visualization
-mol = parse_smiles("CN1C=NC2=C1C(=O)N(C(=O)N2C)C")
-fig = create_3d_conformer_plot(mol)
+# Create intelligent 3D visualization with smart features
+mol = parse_smiles("CN1C=NC2=C1C(=O)N(C(=O)N2C)C")  # caffeine
+fig = create_3d_conformer_plot(
+    mol, 
+    molecule_name="Caffeine",  # Smart title
+    smiles="CN1C=NC2=C1C(=O)N(C(=O)N2C)C"
+)
 
-# Display in browser
-fig.show()
+# NEW smart features:
+# ✓ Perfect zoom level based on molecule size (no more manual adjustment!)
+# ✓ Smart text contrast (white text on dark atoms, black text on light atoms)
+# ✓ Meaningful titles instead of generic "3D Structure"
+# ✓ Custom clean controls (only essential 3D navigation)
+# ✓ Theme-adaptive colors and styling
+# ✓ Element symbols clearly visible on all atom colors
+
+fig.show()  # Opens at perfect zoom level immediately!
 
 # Save as HTML
 fig.write_html("caffeine_3d.html")
-
-# Save as static image
-fig.write_image("caffeine_3d.png", width=800, height=600)
 ```
 
-### Advanced 3D Options
+### What You Get Automatically
 
-```python
-# Custom styling
-fig = create_3d_conformer_plot(
-    mol,
-    atom_size=8,
-    bond_width=4,
-    show_atom_labels=True,
-    background_color='white'
-)
+**NEW Smart Features (No Configuration Required):**
 
-# Update layout
-fig.update_layout(
-    title="Caffeine 3D Structure",
-    scene=dict(
-        xaxis_title="X (Å)",
-        yaxis_title="Y (Å)", 
-        zaxis_title="Z (Å)",
-        camera=dict(eye=dict(x=1.5, y=1.5, z=1.5))
-    )
-)
-
-fig.show()
-```
+- **Perfect zoom level** automatically calculated based on molecule size
+- **Smart text contrast** - dark text on light atoms, light text on dark atoms
+- **Meaningful titles** using molecule names or SMILES
+- **Custom clean controls** with only essential 3D navigation tools
+- **Theme-adaptive styling** for both dark and light modes
+- **Element symbols** clearly visible on all atom colors
+- **Professional CPK coloring** with theme-matched bonds
 
 ### Multiple 3D Conformers
 
@@ -133,7 +146,7 @@ fig.show()
 
 ## Property Analysis Visualizations
 
-### Scatter Matrix Plots
+### Professional Property Analysis
 
 ```python
 from data_utils import create_molecular_dataframe
@@ -152,93 +165,89 @@ smiles_list = [
 ]
 
 df = create_molecular_dataframe(smiles_list)
-valid_df = df[df['Valid']].copy()
 
-# Create scatter matrix
-fig = plot_molecular_properties(valid_df)
-fig.show()
+# Create professional scatter matrix (Quantifyr theme applied automatically)
+properties = ["molecular_weight", "logp", "tpsa", "num_rotatable_bonds"]
+fig = plot_molecular_properties(df, properties)
+fig.show()  # Beautiful dark theme with cyan accents
 
 # Save interactive plot
-fig.write_html("molecular_properties_scatter.html")
+fig.write_html("molecular_properties_analysis.html")
 ```
 
-### Property Distribution Analysis
+### Individual Property Distributions
 
 ```python
 from viz import plot_property_distribution
 
-# Analyze specific properties
-properties = ['MW', 'LogP', 'TPSA', 'NumRotatableBonds']
-fig = plot_property_distribution(valid_df, properties)
-fig.show()
+# Analyze individual properties with professional styling
+fig = plot_property_distribution(df, "molecular_weight")
+fig.show()  # Histogram + box plot with Quantifyr theme
 
-# Custom distribution plot
-fig = plot_property_distribution(
-    valid_df, 
-    properties=['MW', 'LogP'],
-    plot_type='histogram',  # or 'box'
-    bins=20
-)
-fig.show()
+fig2 = plot_property_distribution(df, "logp")
+fig2.show()  # Clean, consistent styling
+
+# All plots automatically include:
+# ✓ Quantifyr dark theme
+# ✓ Professional typography
+# ✓ Cyan accent colors
+# ✓ Clean margins and spacing
 ```
 
-### Comprehensive Dashboard
+### Flexible Analysis Approach
 
 ```python
-from viz import create_molecular_dashboard
+# No more rigid dashboard - use individual functions for full control
+from viz import plot_molecular_properties, plot_property_distribution, create_3d_conformer_plot
 
-# Create comprehensive analysis dashboard
-dashboard = create_molecular_dashboard(valid_df)
-dashboard.show()
+# Scatter matrix for correlations
+scatter_fig = plot_molecular_properties(df, ["molecular_weight", "logp", "tpsa"])
 
-# Save dashboard
-dashboard.write_html("molecular_dashboard.html")
+# Individual distributions
+mw_fig = plot_property_distribution(df, "molecular_weight")
+logp_fig = plot_property_distribution(df, "logp")
+
+# 3D structures for interesting molecules
+caffeine_mol = parse_smiles("CN1C=NC2=C1C(=O)N(C(=O)N2C)C")
+structure_fig = create_3d_conformer_plot(caffeine_mol)
+
+# Display all with consistent theming
+scatter_fig.show()
+mw_fig.show()
+logp_fig.show()
+structure_fig.show()
 ```
 
 ## Network Visualizations
 
-### Molecular Graph Networks
+### Smart Molecular Graph Networks
 
 ```python
+from data_utils import load_molecule_dataset
 from viz import plot_molecular_network
 
-# Visualize molecular topology
-molecules = [
-    ("Ethanol", "CCO"),
-    ("Benzene", "c1ccccc1"),
-    ("Caffeine", "CN1C=NC2=C1C(=O)N(C(=O)N2C)C")
-]
+# Create network visualization with meaningful titles
+smiles_list = ["CCO", "c1ccccc1", "CN1C=NC2=C1C(=O)N(C(=O)N2C)C", "CC(=O)OC1=CC=CC=C1C(=O)O"]
+molecule_names = ["Ethanol", "Benzene", "Caffeine", "Aspirin"]
+graphs, _ = load_molecule_dataset(smiles_list)
 
-for name, smiles in molecules:
-    mol = parse_smiles(smiles)
-    fig = plot_molecular_network(mol)
-    fig.update_layout(title=f"{name} - Molecular Network")
-    fig.show()
-    fig.write_html(f"{name.lower()}_network.html")
-```
-
-### Custom Network Styling
-
-```python
-# Advanced network visualization
-mol = parse_smiles("CN1C=NC2=C1C(=O)N(C(=O)N2C)C")
+# Create smart network visualization with titles and better readability
 fig = plot_molecular_network(
-    mol,
-    node_size=15,
-    edge_width=3,
-    layout='spring',  # or 'circular', 'random'
-    show_atom_labels=True,
-    color_by_element=True
+    graphs, 
+    max_molecules=4,
+    molecule_names=molecule_names,  # Meaningful titles!
+    smiles_list=smiles_list
 )
 
-fig.update_layout(
-    title="Caffeine Molecular Network",
-    showlegend=True,
-    width=800,
-    height=600
-)
+# NEW smart features:
+# ✓ Meaningful subplot titles (molecule names instead of "Molecule 1, 2, 3...")
+# ✓ Smart text contrast (dark text on light atoms, light text on dark atoms)
+# ✓ Larger atoms with better visibility
+# ✓ 3-column layout for optimal readability
+# ✓ Theme-adaptive edge colors and styling
+# ✓ Enhanced hover information with molecule context
 
-fig.show()
+fig.show()  # Shows molecules with readable element symbols on all atoms!
 ```
 
 ## Advanced Visualization Techniques
@@ -483,7 +492,7 @@ def create_molecular_report(smiles_list, output_file="molecular_report.html"):
     valid_df = df[df['Valid']].copy()
     
     # Create visualizations
-    dashboard = create_molecular_dashboard(valid_df)
+    dashboard = create_molecular_dashboard(valid_df) # Removed, Check API Reference for Updated functions
     properties_plot = plot_molecular_properties(valid_df)
     
     # Combine into report
